@@ -136,3 +136,47 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+
+
+production:
+  clients:
+    default:
+      url: mongodb://heroku_8110p96k:jgn1sl41i299dr471b2ijl9g3e@ds157599.mlab.com:57599/heroku_8110p96k
+        ## [Start] Please comment out only for going live in production(Website/Console/CustomerApp) only
+        ## - database.parcelled.in:27017
+        ## - slavedb.parcelled.in:27017
+        ## [end]
+      options:
+
+        read:
+          mode: :primary
+
+        write:
+          w: 1
+        # max_retries specifies the number of times to attempt an
+        # operation before giving up. Default 30 seconds
+        max_retries: 30
+
+        # retry_interval specifies the number of seconds to wait before
+        # retrying a single operation. Default 1 second.
+        retry_interval: 1
+
+        # The default timeout is 5, which is the time in seconds for an
+        # operation to time out.
+        # We recommend 15 because it allows for plenty of time in most
+        # operating environments.
+        # Mongoid doubles the configured value (known issue) so 15
+        # results in a timeout of 30s.
+        # Note that if you have a long-running query (over 30 seconds),
+        # it will time out.
+        # See our example for long-running queries in the blog post
+        # referenced above.
+        timeout: 15
+
+        # refresh_interval specifies the number of seconds to cache information
+        # about a node. Default is 300 seconds (5 minutes).
+        refresh_interval: 300
+
+  options:
+    raise_not_found_error: false
+
