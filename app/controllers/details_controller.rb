@@ -3,6 +3,10 @@ class DetailsController < ApplicationController
   before_action :authenticate_user!
 
   #
+  def index
+
+  end
+
   def details
     patients = Patient.all.order_by(:created_at => 'desc')
 
