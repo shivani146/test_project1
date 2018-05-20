@@ -1,26 +1,136 @@
-<h2>Log in</h2>
+<style>
+  body {
+    font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+    color: #404040;
+    background: #0ca3d2;
+  }
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  .container {
+    margin: 80px auto;
+    width: 640px;
+  }
+
+  .login {
+    position: relative;
+    margin: 0 auto;
+    padding: 20px 20px 20px;
+    width: 310px;
+    background: white;
+    border-radius: 3px;
+
+  }
+
+  h1 {
+    margin: -20px -20px 21px;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    text-shadow: 0 1px white;
+    background: #f3f3f3;
+    border-bottom: 1px solid #cfcfcf;
+    border-radius: 3px 3px 0 0;
+  @include linear-gradient(top, whiteffd, #eef2f5);
+  @include box-shadow(0 1px #f5f5f5);
+  }
+
+  p { margin: 20px 0 0; }
+  p:first-child { margin-top: 0; }
+
+  input[type=text], input[type=password] { width: 278px; }
+
+  p.remember_me {
+    float: left;
+    line-height: 31px;
+  }
+
+  label {
+    font-size: 12px;
+    color: #777;
+    cursor: pointer;
+  }
+
+  input {
+    position: relative;
+    bottom: 1px;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+
+  p.submit { text-align: right; }
+
+
+  .login-help {
+    margin: 20px 0;
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px #2a85a1;
+  }
+  a {
+    color: blue;
+    text-decoration: none;
+  }
+  :-moz-placeholder {
+    color: #c9c9c9 !important;
+    font-size: 13px;
+  }
+
+  ::-webkit-input-placeholder {
+    color: #ccc;
+    font-size: 13px;
+  }
+
+  input {
+    font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
+    font-size: 14px;
+  }
+
+  input[type=email], input[type=password] {
+    margin: 5px;
+    padding: 0 48px;
+    width: 200px;
+    height: 34px;
+    color: #404040;
+    background: white;
+    border: 1px solid;
+    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+    border-radius: 2px;
+    outline: 5px solid #eff4f7;
+    -moz-outline-radius: 3px;
+  }
+
+
+
+  input[type=submit] {
+    padding: 0px 139px;
+    height: 29px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #527881;
+    text-shadow: 0 1px #e3f1f1;
+    background: #cde5ef;
+    border: 1px solid;
+    border-color: #b4ccce #b3c0c8 #9eb9c2;
+    border-radius: 16px;
+    outline: 0;
+  }
+
+  </style>
+<section class="container">
+  <div class="login">
+    <h1>Login or SignUp</h1>
+    <%= render "users/shared/links" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <p><%= f.email_field :email, autofocus: true, placeholder: "Email" %></p>
+      <p><%= f.password_field :password, autocomplete: "off", placeholder: "Email"  %></p>
+      <p class="submit"> <%= f.submit "Log in" %></p>
+    <% end %>
+
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+</section>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
